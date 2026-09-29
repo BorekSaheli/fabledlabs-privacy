@@ -61,6 +61,19 @@ basic diagnostic and usage information about these ML Kit features, as described
         "billing": True,
         "extra": "",
     },
+    {
+        "slug": "repbook",
+        "name": "RepBook: Offline Gym Log",
+        "package": "com.fabledlabs.repbook",
+        "local": "your workouts, sets, routines, custom exercises and settings",
+        "ads": False,
+        "billing": True,
+        "extra": """
+<h2>No ads, no tracking</h2>
+<p>RepBook contains no advertising or analytics SDKs and does not access the internet except to process an optional
+purchase through Google Play. Backups and CSV exports are created only when you choose to, and are shared only where you send them.</p>
+""",
+    },
 ]
 
 
