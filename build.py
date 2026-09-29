@@ -52,6 +52,15 @@ basic diagnostic and usage information about these ML Kit features, as described
 <p>When you share or export a PDF, it goes only where you choose to send it through the Android share sheet.</p>
 """,
     },
+    {
+        "slug": "fix-and-flip",
+        "name": "Fix & Flip: Cozy Repair Shop",
+        "package": "com.fabledlabs.repairshop",
+        "local": "your game progress (coins, items, upgrades), purchases and settings",
+        "ads": True,
+        "billing": True,
+        "extra": "",
+    },
 ]
 
 
