@@ -99,6 +99,15 @@ the internet except to process an optional purchase through Google Play.</p>
 <p>The app uses your phone's vibration motor for haptic feedback. You can turn it off in Settings.</p>
 """,
     },
+    {
+        "slug": "neon-flip",
+        "name": "Neon Flip: Pinball Roguelite",
+        "package": "com.fabledlabs.neonflip",
+        "local": "your best score, coins, upgrades, purchases and settings",
+        "ads": True,
+        "billing": True,
+        "extra": "",
+    },
 ]
 
 
