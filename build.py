@@ -87,6 +87,18 @@ purchase through Google Play. Backups and CSV exports are created only when you 
 the internet except to process an optional purchase through Google Play.</p>
 """,
     },
+    {
+        "slug": "pop-clinic",
+        "name": "Pop Clinic: Satisfying Pops",
+        "package": "com.fabledlabs.popclinic",
+        "local": "your level progress, stars, unlocked instruments and themes, purchases and settings",
+        "ads": True,
+        "billing": True,
+        "extra": """
+<h2>Vibration</h2>
+<p>The app uses your phone's vibration motor for haptic feedback. You can turn it off in Settings.</p>
+""",
+    },
 ]
 
 
