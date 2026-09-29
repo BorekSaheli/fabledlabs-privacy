@@ -108,6 +108,30 @@ the internet except to process an optional purchase through Google Play.</p>
         "billing": True,
         "extra": "",
     },
+    {
+        "slug": "sole-clinic",
+        "name": "Sole Clinic: Foot Care ASMR",
+        "package": "com.fabledlabs.soleclinic",
+        "local": "your patient progress, stars, unlocked polish colors, purchases and settings",
+        "ads": True,
+        "billing": True,
+        "extra": """
+<h2>Vibration</h2>
+<p>The app uses your phone's vibration motor for haptic feedback. You can turn it off in Settings.</p>
+""",
+    },
+    {
+        "slug": "clear-ears",
+        "name": "Clear Ears: Earwax Clinic",
+        "package": "com.fabledlabs.clearears",
+        "local": "your patient progress, stars, unlocked items, purchases and settings",
+        "ads": True,
+        "billing": True,
+        "extra": """
+<h2>Vibration</h2>
+<p>The app uses your phone's vibration motor for haptic feedback. You can turn it off in Settings.</p>
+""",
+    },
 ]
 
 
