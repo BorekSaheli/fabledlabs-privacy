@@ -74,6 +74,19 @@ basic diagnostic and usage information about these ML Kit features, as described
 purchase through Google Play. Backups and CSV exports are created only when you choose to, and are shared only where you send them.</p>
 """,
     },
+    {
+        "slug": "pawpath",
+        "name": "PawPath: Dog Training Program",
+        "package": "com.fabledlabs.pawpath",
+        "local": "your dog's name and age group, your logged training sessions, streaks and settings",
+        "ads": False,
+        "billing": True,
+        "extra": """
+<h2>No ads, no tracking</h2>
+<p>PawPath contains no advertising or analytics SDKs. All lessons are bundled in the app, and the app does not access
+the internet except to process an optional purchase through Google Play.</p>
+""",
+    },
 ]
 
 
