@@ -35,6 +35,23 @@ APPS = [
         "billing": True,
         "extra": "",
     },
+    {
+        "slug": "study-scanner",
+        "name": "Study Scanner: PDF & Notes",
+        "package": "com.fabledlabs.studyscanner",
+        "local": "your scanned page images, the text recognized from them, document titles, courses and settings",
+        "ads": True,
+        "billing": True,
+        "extra": """
+<h2>Camera, scanning and text recognition</h2>
+<p>Scanning uses Google's ML Kit Document Scanner, which runs inside Google Play services on your device. The app itself
+does not request camera permission. Text recognition uses Google's on-device ML Kit model: your images are
+processed on your phone and are not sent to us or to Google for recognition. Google Play services may collect
+basic diagnostic and usage information about these ML Kit features, as described in
+<a href="https://developers.google.com/ml-kit/terms">Google's ML Kit terms</a>.</p>
+<p>When you share or export a PDF, it goes only where you choose to send it through the Android share sheet.</p>
+""",
+    },
 ]
 
 
