@@ -9,15 +9,19 @@ ADS_SECTION = """
 <h2>Advertising (Google AdMob)</h2>
 <p>The free version shows ads served by Google AdMob. To show and measure ads, and to prevent fraud, the
 Google Mobile Ads SDK may collect and process data such as your device's advertising ID, IP address, coarse
-location derived from the IP address, device model and OS version, and interactions with ads. This data is
+location derived from the IP address, device model and OS version, and interactions with ads{ads_more}. This data is
 collected by Google, not by us, and is handled under
 <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>
 (see also <a href="https://policies.google.com/technologies/partner-sites">how Google uses data from apps that use its services</a>).</p>
 <p>If you are in the European Economic Area, the UK or Switzerland, the app asks for your consent before
 personalized ads are shown, using Google's consent tool. You can change your choice at any time from the
 app's Settings screen ("Ad privacy choices"). You can also reset or delete your advertising ID in your
-Android device settings. Buying "Remove ads" turns off banner and full-screen ads.</p>
+Android device settings. {remove_ads}</p>
 """
+# Per app (optional keys): "updated" (its own last-updated date), "ads_more" (more Ads SDK data, after "interactions
+# with ads"), "remove_ads" (what buying Remove ads does), "children" (the Children paragraph).
+REMOVE_ADS = 'Buying "Remove ads" turns off banner and full-screen ads.'
+CHILDREN = "The app is not directed at children under 13, and we do not knowingly collect personal information from children."
 
 BILLING_SECTION = """
 <h2>In-app purchases</h2>
@@ -91,10 +95,24 @@ the internet except to process an optional purchase through Google Play.</p>
         "slug": "pop-clinic",
         "name": "Pop Clinic: Satisfying Pops",
         "package": "com.fabledlabs.popclinic",
-        "local": "your level progress, stars, unlocked instruments and themes, purchases and settings",
+        "local": ("your game progress (patients treated, Career progress, coins, instruments, the looks you own and "
+                  "wear, the daily bonus), the items you bought, your settings and the age you entered"),
         "ads": True,
         "billing": True,
+        "updated": "November 7, 2026",
+        "ads_more": ", and diagnostic and crash information about the ads SDK",
+        "remove_ads": ("The app shows a full-screen ad after some results. Any purchase, such as \"Remove ads\", turns "
+                       "those full-screen ads off. Short videos that pay in-game coins stay available, and you only "
+                       "see one when you choose to watch it. The app shows no banner ads."),
+        "children": ("The app is not directed at children under 13, and we do not knowingly collect personal "
+                     "information from children. Players under 16 are treated as below the age of digital consent: "
+                     "their ad requests are marked as child-directed and under the age of consent, so Google serves "
+                     "them non-personalized ads only."),
         "extra": """
+<h2>Age question</h2>
+<p>When you first open the app, it asks how old you are. The answer stays on your device, in its own file, and is never
+sent to us. The app only uses it to tell Google's ads and consent tools whether you are under 16, so that players under
+16 get ads that are not personalized (see "Children" below). You are asked again if you start over as a new player.</p>
 <h2>Vibration</h2>
 <p>The app uses your phone's vibration motor for haptic feedback. You can turn it off in Settings.</p>
 """,
@@ -153,7 +171,7 @@ h1{{font-size:1.8rem;margin-bottom:.2rem}} h2{{font-size:1.15rem;margin-top:2rem
 
 def app_page(a: dict) -> str:
     parts = [f"<h1>Privacy Policy &mdash; {html.escape(a['name'])}</h1>",
-             f"<p class='muted'>Developer: FabledLabs &middot; App ID: {a['package']} &middot; Last updated: {UPDATED}</p>",
+             f"<p class='muted'>Developer: FabledLabs &middot; App ID: {a['package']} &middot; Last updated: {a.get('updated', UPDATED)}</p>",
              "<h2>Summary</h2>",
              "<ul><li>No account or sign-up is needed.</li>"
              "<li>We (FabledLabs) do not run servers and do not collect, receive or sell your personal data.</li>"
@@ -167,13 +185,11 @@ def app_page(a: dict) -> str:
     if a["extra"]:
         parts.append(a["extra"])
     if a["ads"]:
-        parts.append(ADS_SECTION)
+        parts.append(ADS_SECTION.format(ads_more=a.get("ads_more", ""), remove_ads=a.get("remove_ads", REMOVE_ADS)))
     if a["billing"]:
         parts.append(BILLING_SECTION)
-    parts.append("""
-<h2>Children</h2>
-<p>The app is not directed at children under 13, and we do not knowingly collect personal information from children.</p>
-<h2>Security</h2>
+    parts.append(f"\n<h2>Children</h2>\n<p>{a.get('children', CHILDREN)}</p>")
+    parts.append("""<h2>Security</h2>
 <p>Data exchanged with Google's ad and billing services is encrypted in transit (HTTPS).</p>
 <h2>Changes</h2>
 <p>We may update this policy. The "last updated" date above shows the latest version.</p>
