@@ -227,6 +227,32 @@ def main() -> None:
         items.append(f"<li><a href='{a['slug']}.html'>{html.escape(a['name'])}</a></li>")
     (OUT / "index.html").write_text(page("FabledLabs - Privacy", "<h1>FabledLabs</h1><p>Privacy policies for our Android apps:</p><ul>"
                                          + "".join(items) + "</ul>"), encoding="utf-8")
+    (OUT / "pop-clinic-delete-data.html").write_text(page("Pop Clinic - Delete your data", POP_CLINIC_DELETE), encoding="utf-8")
+
+
+# Play Console > Data safety > "Delete data URL": the steps to have Pop Clinic data deleted.
+POP_CLINIC_DELETE = """<h1>Pop Clinic: delete your data</h1>
+<p class='muted'>Developer: FabledLabs &middot; App: Pop Clinic: Satisfying Pops (com.fabledlabs.popclinic)</p>
+<p>Pop Clinic has no accounts. What it keeps about you is on your phone, except two things that are sent only with
+your choice: gameplay analytics (Google Analytics for Firebase) and, if you said yes, squeeze recordings.</p>
+<h2>Squeeze recordings</h2>
+<ol>
+<li>Open Pop Clinic and tap the gear (Settings).</li>
+<li>Tap <b>Squeeze recordings</b>, then <b>Delete my recordings</b>.</li>
+</ol>
+<p>Every recording your phone sent is deleted from our database, recordings still waiting on the phone are removed,
+and recording stops. If you no longer have the phone, write to us (the developer e-mail address on the app's Google Play
+page) with the research ID shown in that screen, and we delete them. Recordings are otherwise deleted after at most 12
+months.</p>
+<h2>Gameplay analytics</h2>
+<p>Turn it off in Settings &gt; <b>Share how you play</b>. Analytics events carry only a random app-instance identifier,
+so we cannot pick out which data is yours; Google deletes event data after at most 14 months. Uninstalling the app or
+clearing its data removes the identifier.</p>
+<h2>On your phone</h2>
+<p>Your progress, coins, looks, settings and the age you entered stay on your phone. Uninstalling the app or clearing
+its data in Android's settings deletes them.</p>
+<p><a href='pop-clinic.html'>Full privacy policy</a></p>
+"""
 
 
 if __name__ == "__main__":
