@@ -115,8 +115,21 @@ the internet except to process an optional purchase through Google Play.</p>
 sent to us. The app uses it to decide whether analytics may be used (see "Analytics" below) and to configure
 Google's ads and consent tools for players under 16 (see "Children" below). You are asked again if you start over as a new player.</p>
 <h2>Analytics</h2>
-<p>FabledLabs uses Google Analytics for Firebase to learn how people play: the customers they treat, the screens they visit, what they look at and buy in the shop, and how they respond to ads (for example a video offered, watched or skipped). Events include screens, tools, items, timings, ad outcomes and purchase outcomes. Google Analytics links these events with a random app-instance identifier stored on your device and processes device and app information and an approximate location (country or region). It does not receive your name, an account, the age you entered, your advertising ID or purchase tokens. FabledLabs links Google Analytics with its Google AdMob and Google Play accounts, so that ad performance, ad earnings and purchases can be seen next to how the game is played; through these links Google Analytics and AdMob share reports with each other. The app tells Google Analytics that its data may not be used for ads: no advertising storage, no ad user data and no ad personalization, so it is not used to choose or personalize the ads you see.</p>
+<p>FabledLabs uses Google Analytics for Firebase to learn how people play: the customers they treat and how each spot went (for example how many tries it took, how long, how hard the in-game squeeze was and how close the fingers were to the spot, as summary numbers, never the finger movements themselves), the screens they visit, their in-game settings, what they look at and buy in the shop, coins earned and spent, how they respond to ads (for example a video offered, watched or skipped), and how the game runs on their phone (loading times, slow frames, the graphics chip's name, and errors such as a save that could not be written). Events include screens, tools, items, timings, ad outcomes and purchase outcomes. Google Analytics links these events with a random app-instance identifier stored on your device and processes device and app information and an approximate location (country or region). It does not receive your name, an account, the age you entered, your advertising ID or purchase tokens. FabledLabs links Google Analytics with its Google AdMob and Google Play accounts, so that ad performance, ad earnings and purchases can be seen next to how the game is played; through these links Google Analytics and AdMob share reports with each other. The app tells Google Analytics that its data may not be used for ads: no advertising storage, no ad user data and no ad personalization, so it is not used to choose or personalize the ads you see.</p>
 <p>What happens depends on the country of your Google Play account. In the European Economic Area, the United Kingdom, Switzerland, Canada, Turkey, South Korea, China, India, Russia, Vietnam, Thailand, Indonesia and Saudi Arabia, and whenever the country is not known, the app asks once and sends nothing unless you choose Share. In other countries analytics is on for players aged 16 or older. Either way you can turn it on or off at any time in Settings &gt; Share how you play. For players under 16, analytics is always off. Turning it off stops further collection. Google keeps event data for at most 14 months and then deletes it. Because the data carries only a random identifier and nothing that names you, we cannot pick out which data is yours; if you have a question about it, contact us at the address below.</p>
+<h2>Squeeze recordings (optional)</h2>
+<p>Players aged 18 or older are asked, once and separately, whether Pop Clinic may record how their fingers move
+while they treat their next 50 customers. Only after a yes, the app records, during treatment only: finger positions
+and timing on the skin, the touch pressure the phone reports, the tool, the spots and how each one came out, and how
+the game reacted (for example how hard the in-game squeeze was). Nothing from menus, the shop or text. Each customer's
+recording is sent to FabledLabs' Google Cloud Firestore database in the European Union (the Netherlands), with Google
+acting as our processor. A recording carries a random research ID made on your phone and the game version, and no
+name, account, device ID, advertising ID or analytics ID; it is not combined with analytics and never used to
+identify anyone or for ads. We use the recordings only to make squeezing feel right, and keep them at most 12 months.
+The legal basis is your consent. You can stop at any time in Settings &gt; Squeeze recordings, and "Delete my
+recordings" there deletes every recording your phone sent. If you no longer have the phone, write to us with the
+research ID shown in that screen. You also have the rights of access and complaint to your data protection
+authority.</p>
 <h2>Vibration</h2>
 <p>The app uses your phone's vibration motor for haptic feedback. You can turn it off in Settings.</p>
 """,
@@ -178,7 +191,7 @@ def app_page(a: dict) -> str:
              f"<p class='muted'>Developer: FabledLabs &middot; App ID: {a['package']} &middot; Last updated: {a.get('updated', UPDATED)}</p>",
              "<h2>Summary</h2>",
              "<ul><li>No account or sign-up is needed.</li>"
-             + ("<li>The app may send gameplay analytics to FabledLabs through Google Analytics, depending on your country and age (see Analytics).</li>" if a.get("analytics") else
+             + ("<li>The app may send gameplay analytics to FabledLabs through Google Analytics, depending on your country and age (see Analytics), and, only if you say yes, recordings of how you squeeze (see Squeeze recordings).</li>" if a.get("analytics") else
                 "<li>We (FabledLabs) do not run servers and do not collect, receive or sell your personal data.</li>")
              + f"<li>The app stores {a['local']} only on your device.</li>"
              + ("<li>Ads are provided by Google AdMob, which may collect device data as described below.</li>" if a["ads"] else "")
