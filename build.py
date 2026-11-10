@@ -99,7 +99,8 @@ the internet except to process an optional purchase through Google Play.</p>
                   "wear, the daily bonus), the items you bought, your settings and the age you entered"),
         "ads": True,
         "billing": True,
-        "updated": "November 7, 2026",
+        "updated": "November 10, 2026",
+        "analytics": True,
         "ads_more": ", and diagnostic and crash information about the ads SDK",
         "remove_ads": ("The app shows a full-screen ad after some results. Any purchase, such as \"Remove ads\", turns "
                        "those full-screen ads off. Short videos that pay in-game coins stay available, and you only "
@@ -111,8 +112,11 @@ the internet except to process an optional purchase through Google Play.</p>
         "extra": """
 <h2>Age question</h2>
 <p>When you first open the app, it asks how old you are. The answer stays on your device, in its own file, and is never
-sent to us. The app only uses it to tell Google's ads and consent tools whether you are under 16, so that players under
-16 get ads that are not personalized (see "Children" below). You are asked again if you start over as a new player.</p>
+sent to us. The app uses it to decide whether analytics may be used (see "Analytics" below) and to configure
+Google's ads and consent tools for players under 16 (see "Children" below). You are asked again if you start over as a new player.</p>
+<h2>Analytics</h2>
+<p>FabledLabs uses Google Analytics for Firebase to learn how people play: the customers they treat, the screens they visit, what they look at and buy in the shop, and how they respond to ads (for example a video offered, watched or skipped). Events include screens, tools, items, timings, ad outcomes and purchase outcomes. Google Analytics links these events with a random app-instance identifier stored on your device and processes device and app information and an approximate location (country or region). It does not receive your name, an account, the age you entered, your advertising ID or purchase tokens, and the data is not used for advertising.</p>
+<p>What happens depends on the country of your Google Play account. In the United States, Australia, New Zealand and Japan, analytics is on for players aged 16 or older; you can turn it off at any time in Settings &gt; Share how you play. Everywhere else, including the European Economic Area, the United Kingdom and Switzerland, and whenever the country is not known, the app asks once and sends nothing unless you choose Share; you can change your answer in Settings at any time. For players under 16, analytics is always off. Turning it off stops further collection. Google keeps event data for at most 14 months and then deletes it. Because the data carries only a random identifier and nothing that names you, we cannot pick out which data is yours; if you have a question about it, contact us at the address below.</p>
 <h2>Vibration</h2>
 <p>The app uses your phone's vibration motor for haptic feedback. You can turn it off in Settings.</p>
 """,
@@ -174,8 +178,9 @@ def app_page(a: dict) -> str:
              f"<p class='muted'>Developer: FabledLabs &middot; App ID: {a['package']} &middot; Last updated: {a.get('updated', UPDATED)}</p>",
              "<h2>Summary</h2>",
              "<ul><li>No account or sign-up is needed.</li>"
-             "<li>We (FabledLabs) do not run servers and do not collect, receive or sell your personal data.</li>"
-             f"<li>The app stores {a['local']} only on your device.</li>"
+             + ("<li>The app may send gameplay analytics to FabledLabs through Google Analytics, depending on your country and age (see Analytics).</li>" if a.get("analytics") else
+                "<li>We (FabledLabs) do not run servers and do not collect, receive or sell your personal data.</li>")
+             + f"<li>The app stores {a['local']} only on your device.</li>"
              + ("<li>Ads are provided by Google AdMob, which may collect device data as described below.</li>" if a["ads"] else "")
              + "</ul>",
              "<h2>Data stored on your device</h2>",
